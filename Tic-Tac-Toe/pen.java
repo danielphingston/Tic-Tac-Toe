@@ -7,6 +7,7 @@ import java.awt.geom.Line2D;
 
 public class pen extends JPanel implements MouseListener{
 	
+	
 	static int flag=2;	
 	int turn = 100;
 	@Override
@@ -28,6 +29,7 @@ public class pen extends JPanel implements MouseListener{
 		}
 	
    	}
+	check c=new check();
 	
 	pen(){
 		
@@ -39,6 +41,7 @@ public class pen extends JPanel implements MouseListener{
 		flag=(flag+1)%2;
 		turn=flag;
 		repaint();
+		c.set();
 		}
 	}  
 	public void mouseClicked(MouseEvent e) {}	

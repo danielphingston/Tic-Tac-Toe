@@ -4,9 +4,11 @@ import java.util.*;
 import java.awt.*;
 
 
-public class tic extends JPanel  {
+public class tic extends JPanel{
 	static JFrame J,D;
-	static pen[][] p=new pen[3][3];	
+	static pen[][] p=new pen[3][3];
+	public static int f=0;
+	static check c=new check();
 
 	tic (){
 		
@@ -15,8 +17,7 @@ public class tic extends JPanel  {
 			
 		J.setLayout(new GridLayout(3,3));
 		J.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		J.setVisible(true);		
-
+		J.setVisible(true);	
 		game();			
 	}
 	
@@ -36,22 +37,25 @@ public class tic extends JPanel  {
 	}
 	
 	public static void infoBox(String infoMessage, String titleBar)
-    {
+    	{
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
 		for(int i=0;i<3;i++){
 			for(int j=0;j<3;j++){
 				p[i][j].reset();
 			}
-		}		
-		
-    }
-	
+		}
+	}
+	public static void set(){
+		f=1;
+	}
 	
 	public static void main(String args[]){
 		new tic();
 		
-		new Thread(
-            new Runnable() {
+		new Thread (
+            	new Runnable() {
+
+
                 public void run() {
 					int f=0;
 					int[] w=new int[8] ;
@@ -102,8 +106,11 @@ public class tic extends JPanel  {
 						if (f==1){
 							infoBox("DRAW","GAME OVER");
 							}							
-						try{	
-						Thread.sleep(100);
+						try{
+						while(c.get()!=1){	
+							Thread.sleep(100);							
+							}
+						System.out.println("hi");	
 						}catch(Exception e){}												
 					}
                 }
